@@ -1,14 +1,24 @@
-# Use lightweight Java 21 runtime
+# =========================
+# STAGE 1: BUILD
+# =========================
+FROM maven:3.9.9-eclipse-temurin-21 AS build
+
+WORKDIR /build
+
+COPY pom.xml .
+COPY src ./src
+
+RUN mvn clean package -DskipTests
+
+# =========================
+# STAGE 2: RUNTIME
+# =========================
 FROM eclipse-temurin:21-jre
 
-# App directory
 WORKDIR /app
 
-# Copy built jar
-COPY target/*.jar app.jar
+COPY --from=build /build/target/*.jar app.jar
 
-# Expose Spring Boot port
 EXPOSE 8080
 
-# Start app
 CMD ["java", "-jar", "app.jar"]
