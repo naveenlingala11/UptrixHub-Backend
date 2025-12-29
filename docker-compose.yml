@@ -1,0 +1,26 @@
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: javaarray-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: javaarray
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: naveen
+
+  redis:
+    image: redis:7
+    container_name: javaarray-redis
+    ports:
+      - "6380:6379"
+
+  app:
+    build: .
+    container_name: javaarray-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - redis

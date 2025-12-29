@@ -1,0 +1,83 @@
+package com.ja.order.service;
+
+import com.ja.checkout.dto.CheckoutRequest;
+import com.ja.checkout.dto.CheckoutResponse;
+import com.ja.checkout.service.CheckoutService;
+import com.ja.order.dto.CreateOrderRequest;
+import com.ja.order.entity.Order;
+import com.ja.order.enums.OrderStatus;
+import com.ja.order.repository.OrderRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.time.Instant;
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class OrderService {
+
+    private final CheckoutService checkoutService;
+    private final OrderRepository orderRepo;
+
+    /* ================= CREATE ORDER ================= */
+    public Order createOrder(CreateOrderRequest req, Long userId) {
+
+        CheckoutResponse preview =
+                checkoutService.preview(
+                        new CheckoutRequest(
+                                req.getCourseIds(),
+                                null,
+                                req.getCouponCode()
+                        )
+                );
+
+        Order order = Order.builder()
+                .userId(userId)
+                .subtotal(preview.subtotal())
+                .gst(preview.gst())
+                .discount(preview.discount())
+                .total(preview.total())
+                .status(OrderStatus.PENDING) // ✅ PENDING until payment
+                .createdAt(Instant.now())
+                .build();
+
+        return orderRepo.save(order);
+    }
+
+    /* ================= GET ORDER ================= */
+    public Order getOrder(Long id) {
+        return orderRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+    }
+
+    /* ================= USER ORDERS ================= */
+    public List<Order> getUserOrders(Long userId) {
+        return orderRepo.findByUserIdOrderByCreatedAtDesc(userId);
+    }
+
+    /* ================= MARK PAID ================= */
+    public void markPaid(Long orderId) {
+        Order order = getOrder(orderId);
+        order.setStatus(OrderStatus.PAID);
+        orderRepo.save(order);
+    }
+
+    /* ================= CANCEL ORDER ================= */
+    public void cancelOrder(Long orderId, Long userId) {
+
+        Order order = getOrder(orderId);
+
+        if (!order.getUserId().equals(userId)) {
+            throw new RuntimeException("Unauthorized");
+        }
+
+        if (order.getStatus() == OrderStatus.PAID) {
+            throw new RuntimeException("Paid order cannot be cancelled");
+        }
+
+        order.setStatus(OrderStatus.CANCELLED);
+        orderRepo.save(order);
+    }
+
+}
