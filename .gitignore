@@ -37,3 +37,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# === TEMP: allow Spring Boot jar for Koyeb ===
+!target/
+!target/*.jar
