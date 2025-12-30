@@ -2,11 +2,11 @@ FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 
-# Copy jar (Spring Boot fat jar)
+# Copy Spring Boot fat jar
 COPY target/*.jar app.jar
 
-# Expose port for Koyeb
+# Render injects PORT automatically
 EXPOSE 8080
 
-# IMPORTANT: Bind to PORT env (Koyeb injects PORT)
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# IMPORTANT: bind Spring Boot to PORT env
+ENTRYPOINT ["java", "-Dserver.port=${PORT}", "-jar", "app.jar"]
