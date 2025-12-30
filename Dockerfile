@@ -10,10 +10,10 @@ COPY pom.xml .
 COPY .mvn .mvn
 COPY mvnw mvnw
 
-# 🔥 FIX: give execute permission to mvnw
+# Give execute permission
 RUN chmod +x mvnw
 
-# Download dependencies
+# Download dependencies (cache layer)
 RUN ./mvnw -q -DskipTests dependency:go-offline
 
 # Copy source
@@ -24,9 +24,9 @@ RUN ./mvnw clean package -DskipTests
 
 
 # =========================
-# 2️⃣ Runtime stage
+# 2️⃣ Runtime stage (🔥 MUST BE JDK)
 # =========================
-FROM eclipse-temurin:21-jre
+FROM eclipse-temurin:21-jdk
 
 WORKDIR /app
 
@@ -34,5 +34,8 @@ WORKDIR /app
 COPY --from=builder /build/target/*SNAPSHOT.jar app.jar
 
 EXPOSE 8080
+
+# Optional safety limits
+ENV JAVA_TOOL_OPTIONS="-Xms64m -Xmx256m"
 
 ENTRYPOINT ["java","-jar","app.jar"]

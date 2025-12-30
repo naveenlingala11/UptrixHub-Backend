@@ -2,6 +2,7 @@ package com.ja.course.service;
 
 import com.ja.course.entity.Course;
 import com.ja.course.enums.PriceType;
+import com.ja.course.repository.CourseRepository;
 import com.ja.payment.repository.OrderItemRepository;
 import com.ja.user.entity.User;
 import com.ja.user.repository.UserRepository;
@@ -14,13 +15,12 @@ public class CourseAccessService {
 
     private final OrderItemRepository orderItemRepository;
     private final UserRepository userRepository;
+    private final CourseRepository courseRepository;
 
-    /* ==================================================
-       CHECK ACCESS USING COURSE ENTITY
-       ================================================== */
+    /* ================= ENTITY BASED ================= */
     public boolean canAccess(Long userId, Course course) {
 
-        // ✅ FREE COURSE
+        // 🆓 FREE COURSE
         if (course.getPriceType() == PriceType.FREE) {
             return true;
         }
@@ -28,20 +28,23 @@ public class CourseAccessService {
         User user = userRepository.findById(userId).orElse(null);
         if (user == null) return false;
 
-        // ✅ PRO SUBSCRIPTION
+        // ⭐ PRO SUBSCRIPTION
         if (Boolean.TRUE.equals(user.getSubscriptionActive())) {
             return true;
         }
 
-        // ✅ PURCHASED COURSE
+        // 💰 PURCHASED COURSE
         return orderItemRepository
                 .existsByUser_IdAndCourse_Id(userId, course.getId());
     }
 
-    /* ==================================================
-       CHECK ACCESS USING COURSE ID
-       ================================================== */
+    /* ================= ID BASED ================= */
     public boolean hasAccess(Long userId, String courseId) {
+
+        Course course = courseRepository.findById(courseId).orElse(null);
+        if (course != null && course.getPriceType() == PriceType.FREE) {
+            return true;
+        }
 
         User user = userRepository.findById(userId).orElse(null);
         if (user == null) return false;

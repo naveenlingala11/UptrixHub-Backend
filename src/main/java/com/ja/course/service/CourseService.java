@@ -17,7 +17,7 @@ public class CourseService {
     public CoursePlayerData getCourseContent(String courseId) {
 
         Course course = courseRepository.findById(courseId)
-                .orElseThrow();
+                .orElseThrow(() -> new RuntimeException("Course not found"));
 
         if (!course.isPublished()) {
             throw new RuntimeException("Course not published");

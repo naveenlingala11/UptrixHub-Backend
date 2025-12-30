@@ -3,10 +3,16 @@ package com.ja.order.service;
 import com.ja.checkout.dto.CheckoutRequest;
 import com.ja.checkout.dto.CheckoutResponse;
 import com.ja.checkout.service.CheckoutService;
+import com.ja.course.entity.Course;
+import com.ja.course.repository.CourseRepository;
 import com.ja.order.dto.CreateOrderRequest;
 import com.ja.order.entity.Order;
 import com.ja.order.enums.OrderStatus;
 import com.ja.order.repository.OrderRepository;
+import com.ja.payment.entity.OrderItem;
+import com.ja.payment.enums.PaymentStatus;
+import com.ja.payment.repository.OrderItemRepository;
+import com.ja.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +25,9 @@ public class OrderService {
 
     private final CheckoutService checkoutService;
     private final OrderRepository orderRepo;
+    private final CourseRepository courseRepository;
+    private final OrderItemRepository orderItemRepository;
+    private final UserRepository userRepository;
 
     /* ================= CREATE ORDER ================= */
     public Order createOrder(CreateOrderRequest req, Long userId) {
@@ -38,11 +47,31 @@ public class OrderService {
                 .gst(preview.gst())
                 .discount(preview.discount())
                 .total(preview.total())
-                .status(OrderStatus.PENDING) // ✅ PENDING until payment
+                .status(OrderStatus.PENDING)
                 .createdAt(Instant.now())
                 .build();
 
-        return orderRepo.save(order);
+        order = orderRepo.save(order); // 🔥 save first to get orderId
+
+        // ================= CREATE ORDER ITEMS (🔥 IMPORTANT) =================
+        for (String courseId : req.getCourseIds()) {
+
+            Course course = courseRepository.findById(courseId)
+                    .orElseThrow(() -> new RuntimeException("Course not found"));
+
+            orderItemRepository.save(
+                    OrderItem.builder()
+                            .user(userRepository.getReferenceById(userId))
+                            .course(course)
+                            .orderId(order.getId())
+                            .razorpayOrderId("PENDING")
+                            .razorpayPaymentId("PENDING")
+                            .status(PaymentStatus.CREATED)
+                            .build()
+            );
+        }
+
+        return order; // ✅ return LAST
     }
 
     /* ================= GET ORDER ================= */
