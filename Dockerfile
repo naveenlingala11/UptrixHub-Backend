@@ -1,12 +1,35 @@
+# =========================
+# 1️⃣ Build stage
+# =========================
+FROM eclipse-temurin:21-jdk AS builder
+
+WORKDIR /build
+
+# Copy only pom first (cache optimization)
+COPY pom.xml .
+COPY .mvn .mvn
+COPY mvnw mvnw
+RUN ./mvnw -q -e -DskipTests dependency:go-offline
+
+# Copy source
+COPY src src
+
+# Build fat jar
+RUN ./mvnw clean package -DskipTests
+
+
+# =========================
+# 2️⃣ Runtime stage
+# =========================
 FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 
-# Copy Spring Boot fat jar
-COPY target/*.jar app.jar
+# Copy jar from build stage
+COPY --from=builder /build/target/*SNAPSHOT.jar app.jar
 
 # Render injects PORT automatically
 EXPOSE 8080
 
-# IMPORTANT: bind Spring Boot to PORT env
-ENTRYPOINT ["java", "-Dserver.port=${PORT}", "-jar", "app.jar"]
+# Run app
+ENTRYPOINT ["java","-jar","app.jar"]

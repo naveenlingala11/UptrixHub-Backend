@@ -1,58 +1,33 @@
-# =========================
-# Maven / Java
-# =========================
+# ======================
+# Maven
+# ======================
 target/
-*.jar
-*.class
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
 
-# =========================
+# ======================
+# Logs
+# ======================
+*.log
+
+# ======================
 # Environment files
-# =========================
+# ======================
 .env
 application-dev.properties
 application-prod.properties
 
-# =========================
-# Logs
-# =========================
-*.log
-
-# =========================
+# ======================
 # IDEs
-# =========================
+# ======================
 .idea/
-.vscode/
 *.iml
 *.ipr
 *.iws
+.vscode/
 
-# =========================
-# STS / Eclipse
-# =========================
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-# =========================
-# NetBeans
-# =========================
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-
-# =========================
-# Build tools
-# =========================
-build/
-
-# =========================
-# OS files
-# =========================
+# ======================
+# OS
+# ======================
 .DS_Store
 Thumbs.db
