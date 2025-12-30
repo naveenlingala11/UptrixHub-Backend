@@ -5,11 +5,16 @@ FROM eclipse-temurin:21-jdk AS builder
 
 WORKDIR /build
 
-# Copy only pom first (cache optimization)
+# Copy Maven wrapper & pom
 COPY pom.xml .
 COPY .mvn .mvn
 COPY mvnw mvnw
-RUN ./mvnw -q -e -DskipTests dependency:go-offline
+
+# 🔥 FIX: give execute permission to mvnw
+RUN chmod +x mvnw
+
+# Download dependencies
+RUN ./mvnw -q -DskipTests dependency:go-offline
 
 # Copy source
 COPY src src
@@ -25,11 +30,9 @@ FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 
-# Copy jar from build stage
+# Copy jar from builder stage
 COPY --from=builder /build/target/*SNAPSHOT.jar app.jar
 
-# Render injects PORT automatically
 EXPOSE 8080
 
-# Run app
 ENTRYPOINT ["java","-jar","app.jar"]
