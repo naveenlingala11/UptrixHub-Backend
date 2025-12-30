@@ -16,16 +16,27 @@ public class CorsConfig {
 
         CorsConfiguration config = new CorsConfiguration();
 
+        // ✅ ALLOW BOTH LOCAL + PROD FRONTEND
         config.setAllowedOrigins(List.of(
-                "http://localhost:4200"
+                "http://localhost:4200",
+                "https://uptrixhub.online",
+                "https://uptrix-hub.vercel.app"
+
         ));
 
+        // ✅ REQUIRED METHODS
         config.setAllowedMethods(List.of(
                 "GET", "POST", "PUT", "DELETE", "OPTIONS"
         ));
 
+        // ✅ ALLOW ALL HEADERS (Authorization, Content-Type, etc.)
         config.setAllowedHeaders(List.of("*"));
+
+        // ✅ REQUIRED FOR JWT + OAUTH
         config.setAllowCredentials(true);
+
+        // ✅ OPTIONAL BUT GOOD
+        config.setExposedHeaders(List.of("Authorization"));
 
         UrlBasedCorsConfigurationSource source =
                 new UrlBasedCorsConfigurationSource();
