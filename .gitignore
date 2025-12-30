@@ -1,14 +1,34 @@
+# =========================
+# Maven / Java
+# =========================
+target/
+*.jar
+*.class
+
+# =========================
+# Environment files
+# =========================
+.env
 application-dev.properties
 application-prod.properties
-.env
-target/
-.idea/
+
+# =========================
+# Logs
+# =========================
 *.log
 
-HELP.md
-.mvn/wrapper/maven-wrapper.jar
+# =========================
+# IDEs
+# =========================
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
 
-### STS ###
+# =========================
+# STS / Eclipse
+# =========================
 .apt_generated
 .classpath
 .factorypath
@@ -17,25 +37,22 @@ HELP.md
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
+# =========================
+# NetBeans
+# =========================
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
+
+# =========================
+# Build tools
+# =========================
 build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
-### VS Code ###
-.vscode/
-
-# === TEMP: allow Spring Boot jar for Koyeb ===
-!target/
-!target/*.jar
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
