@@ -49,6 +49,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/courses/**").permitAll()
                         .requestMatchers("/api/payment/**").permitAll()
+                        .requestMatchers("/api/pseudo-code/**").permitAll()
                         .requestMatchers("/api/invoices/**").authenticated()
                         .requestMatchers("/api/user/**","/api/public/**").authenticated()
                         .requestMatchers(
