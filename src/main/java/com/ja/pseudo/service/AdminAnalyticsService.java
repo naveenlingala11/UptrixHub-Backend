@@ -30,10 +30,13 @@ public class AdminAnalyticsService {
         return attemptRepo.getSubscriptionStats();
     }
 
+    public List<DifficultyAnalyticsResponse> difficultyAnalytics() {
+        return questionRepo.getDifficultyAnalytics();
+    }
+
     public Page<WeakQuestionResponse> weakQuestions(int page, int size) {
         return answerLogRepo.getMostFailedQuestions(
                 PageRequest.of(page, size)
         );
     }
-
 }

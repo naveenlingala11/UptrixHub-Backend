@@ -12,13 +12,24 @@ public class JwtUserPrincipal {
 
     private final Long userId;
     private final String role;
+    private final Long impersonatedBy;
 
     public JwtUserPrincipal(Long userId, String role) {
+        this(userId, role, null);
+    }
+
+    public JwtUserPrincipal(Long userId, String role, Long impersonatedBy) {
         this.userId = userId;
         this.role = role;
+        this.impersonatedBy = impersonatedBy;
+    }
+
+    public boolean isImpersonated() {
+        return impersonatedBy != null;
     }
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_" + role));
     }
 }
+

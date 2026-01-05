@@ -177,4 +177,18 @@ public class UserService {
                         UserDailyActivity::getCount
                 ));
     }
+    @Transactional
+    public void addAchievement(Long userId, String title, String description) {
+
+        User user = getUserById(userId);
+
+        UserAchievement ua = new UserAchievement();
+        ua.setUser(user);
+        ua.setTitle(title);
+        ua.setDescription(description);
+        ua.setAchievedAt(LocalDate.now());
+
+        achievementRepo.save(ua);
+    }
+
 }

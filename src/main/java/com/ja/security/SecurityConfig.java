@@ -31,27 +31,70 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
 
-                // ✅ USE OUR CORS CONFIG
                 .cors(cors -> cors.configurationSource(corsConfigurationSource))
 
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
 
+                // 🔥 CRITICAL FIX (ADDED – NO REDIRECT TO /login)
+                .formLogin(form -> form.disable())
+                .httpBasic(basic -> basic.disable())
+
                 .authorizeHttpRequests(auth -> auth
 
-                        // ✅ VERY IMPORTANT FOR CORS PREFLIGHT (ADDED)
+                        // ✅ VERY IMPORTANT FOR CORS PREFLIGHT
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
-                        // ================= EXISTING MATCHERS (UNCHANGED) =================
+                        // WS / ACTUATOR
                         .requestMatchers("/ws/**", "/actuator/**").permitAll()
-                        .requestMatchers("/api/auth/**","/api/admin/courses/").permitAll()
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+
+                        // AUTH + AI
+                        .requestMatchers(
+                                "/api/auth/**",
+                                "/api/admin/courses/**",
+                                "/api/ai/**"
+                        ).permitAll()
+
+                        // ADMIN
+                        .requestMatchers(
+                                "/api/admin/**",
+                                "/api/admin/bug-hunter/**"
+                        ).hasRole("ADMIN")
+
+                        // COURSES
                         .requestMatchers("/api/courses/**").permitAll()
+
+                        // PAYMENT
                         .requestMatchers("/api/payment/**").permitAll()
+
+                        // PSEUDO CODE
                         .requestMatchers("/api/pseudo-code/**").permitAll()
+
+                        // PUBLIC
+                        .requestMatchers("/api/public/**").permitAll()
+
+                        // HOME + RESUME (AUTH REQUIRED)
+                        .requestMatchers(
+                                "/api/home/**",
+                                "/api/resume/**",
+                                "/api/resume-upload/**",
+                                "/api/resume-match/**"
+                        ).authenticated()
+
+                        // BUG HUNTER + LEADERBOARD
+                        .requestMatchers(
+                                "/api/bug-hunter/**",
+                                "/api/leaderboard/**"
+                        ).authenticated()
+
+                        // INVOICES
                         .requestMatchers("/api/invoices/**").authenticated()
-                        .requestMatchers("/api/user/**","/api/public/**").authenticated()
+
+                        // USER
+                        .requestMatchers("/api/user/**").authenticated()
+
+                        // COMPILER / EXECUTION (PUBLIC)
                         .requestMatchers(
                                 "/api/compile/**",
                                 "/api/execute/**",
@@ -60,12 +103,16 @@ public class SecurityConfig {
                                 "/debug/**"
                         ).permitAll()
 
-                        // ✅ OAUTH
-                        .requestMatchers("/oauth2/**", "/login/oauth2/**").permitAll()
+                        // OAUTH
+                        .requestMatchers(
+                                "/oauth2/**",
+                                "/login/oauth2/**"
+                        ).permitAll()
 
+                        // CODE
                         .requestMatchers("/api/code/**").authenticated()
 
-                        // ✅ SWAGGER
+                        // SWAGGER
                         .requestMatchers(
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**",

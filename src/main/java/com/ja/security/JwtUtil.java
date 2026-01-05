@@ -64,4 +64,24 @@ public class JwtUtil {
                 .getBody();
     }
 
+// JwtUtil.java
+
+    public String generateImpersonationToken(Long userId, Long adminId) {
+
+        return Jwts.builder()
+                .setSubject(String.valueOf(userId))
+                .claim("role", "USER")
+                .claim("impersonatedBy", adminId)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + EXPIRY))
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
+                .compact();
+    }
+
+    public Long extractImpersonatedBy(String token) {
+        Claims claims = extractAllClaims(token);
+        Object v = claims.get("impersonatedBy");
+        return v == null ? null : Long.parseLong(v.toString());
+    }
+
 }

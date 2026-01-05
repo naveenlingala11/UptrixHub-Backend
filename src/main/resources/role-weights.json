@@ -1,0 +1,20 @@
+{
+  "Java Backend Developer": {
+    "BACKEND": 40,
+    "DATABASE": 20,
+    "ARCHITECTURE": 20,
+    "CLOUD": 10,
+    "TOOLS": 10
+  },
+  "Frontend Developer": {
+    "FRONTEND": 50,
+    "LANGUAGES": 20,
+    "TOOLS": 15,
+    "ARCHITECTURE": 15
+  },
+  "DevOps Engineer": {
+    "DEVOPS": 40,
+    "CLOUD": 40,
+    "TOOLS": 20
+  }
+}

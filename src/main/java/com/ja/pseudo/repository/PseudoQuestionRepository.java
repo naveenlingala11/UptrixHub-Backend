@@ -1,5 +1,6 @@
 package com.ja.pseudo.repository;
 
+import com.ja.pseudo.dto.DifficultyAnalyticsResponse;
 import com.ja.pseudo.entity.PseudoQuestion;
 import com.ja.pseudo.entity.PseudoSkill;
 
@@ -33,5 +34,15 @@ public interface PseudoQuestionRepository
     );
 
     List<PseudoQuestion> findAllBySkillOrderByIdAsc(PseudoSkill skill);
+
+    @Query("""
+select new com.ja.pseudo.dto.DifficultyAnalyticsResponse(
+    q.difficulty,
+    count(q)
+)
+from PseudoQuestion q
+group by q.difficulty
+""")
+    List<DifficultyAnalyticsResponse> getDifficultyAnalytics();
 
 }

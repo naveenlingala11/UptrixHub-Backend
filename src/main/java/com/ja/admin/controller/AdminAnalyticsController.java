@@ -1,17 +1,11 @@
-package com.ja.pseudo.controller;
+package com.ja.admin.controller;
 
-import com.ja.pseudo.dto.DifficultyAnalyticsResponse;
-import com.ja.pseudo.dto.SkillAnalyticsResponse;
-import com.ja.pseudo.dto.SubscriptionAnalyticsResponse;
-import com.ja.pseudo.dto.WeakQuestionResponse;
+import com.ja.pseudo.dto.*;
 import com.ja.pseudo.service.AdminAnalyticsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +25,11 @@ public class AdminAnalyticsController {
     @GetMapping("/subscriptions")
     public List<SubscriptionAnalyticsResponse> subscriptionAnalytics() {
         return service.subscriptionAnalytics();
+    }
+
+    @GetMapping("/difficulty")
+    public List<DifficultyAnalyticsResponse> difficultyAnalytics() {
+        return service.difficultyAnalytics();
     }
 
     @GetMapping("/weak-questions")
