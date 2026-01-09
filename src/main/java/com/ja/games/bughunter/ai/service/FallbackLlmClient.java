@@ -1,6 +1,6 @@
-package com.ja.games.bughunter.ai.service;
+package com.ja.games.games.bughunter.ai.service;
 
-import com.ja.games.bughunter.ai.dto.LlmClient;
+import com.ja.games.games.bughunter.ai.dto.LlmClient;
 import org.springframework.stereotype.Service;
 
 @Service

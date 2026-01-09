@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/leaderboard")
 @RequiredArgsConstructor
-public class LeaderboardController {
+public class GameLeaderboardController {
 
     private final UserXpRepository repo;
 

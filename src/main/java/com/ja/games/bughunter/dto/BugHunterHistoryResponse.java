@@ -1,4 +1,4 @@
-package com.ja.games.bughunter.dto;
+package com.ja.games.games.bughunter.dto;
 
 import java.time.LocalDateTime;
 

@@ -1,7 +1,7 @@
-package com.ja.games.bughunter.controller;
+package com.ja.games.games.bughunter.controller;
 
-import com.ja.games.bughunter.dto.BugHunterLeaderboardRow;
-import com.ja.games.bughunter.service.BugHunterAnalyticsService;
+import com.ja.games.games.bughunter.dto.BugHunterLeaderboardRow;
+import com.ja.games.games.bughunter.service.BugHunterAnalyticsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package com.ja.games.bughunter.ai.dto;
+package com.ja.games.games.bughunter.ai.dto;
 
 public record AiBugRequest(
         Long questionId,

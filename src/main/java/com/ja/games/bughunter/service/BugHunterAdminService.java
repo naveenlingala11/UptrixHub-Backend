@@ -1,7 +1,7 @@
-package com.ja.games.bughunter.service;
+package com.ja.games.games.bughunter.service;
 
-import com.ja.games.bughunter.entity.BugHunterQuestion;
-import com.ja.games.bughunter.repository.BugHunterQuestionRepository;
+import com.ja.games.games.bughunter.entity.BugHunterQuestion;
+import com.ja.games.games.bughunter.repository.BugHunterQuestionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,11 +1,9 @@
-package com.ja.games.bughunter.controller;
+package com.ja.games.games.bughunter.controller;
 
-import com.ja.games.bughunter.dto.BugHunterAnswerRequest;
-import com.ja.games.bughunter.dto.BugHunterAnswerResponse;
-import com.ja.games.dto.SubmitBugAnswerRequest;
-import com.ja.games.bughunter.entity.BugHunterAttempt;
-import com.ja.games.bughunter.entity.BugHunterQuestion;
-import com.ja.games.bughunter.service.BugHunterService;
+import com.ja.games.games.bughunter.dto.BugHunterAnswerRequest;
+import com.ja.games.games.bughunter.dto.BugHunterAnswerResponse;
+import com.ja.games.games.bughunter.entity.BugHunterQuestion;
+import com.ja.games.games.bughunter.service.BugHunterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

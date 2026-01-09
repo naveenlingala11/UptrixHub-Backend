@@ -1,6 +1,6 @@
-package com.ja.games.bughunter.ai.repository;
+package com.ja.games.games.bughunter.ai.repository;
 
-import com.ja.games.bughunter.ai.entity.BugAiExplanation;
+import com.ja.games.games.bughunter.ai.entity.BugAiExplanation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,8 +1,8 @@
-package com.ja.games.bughunter.ai.controller;
+package com.ja.games.games.bughunter.ai.controller;
 
-import com.ja.games.bughunter.ai.dto.AiBugRequest;
-import com.ja.games.bughunter.ai.dto.AiExplainResponse;
-import com.ja.games.bughunter.ai.service.AiExplanationService;
+import com.ja.games.games.bughunter.ai.dto.AiBugRequest;
+import com.ja.games.games.bughunter.ai.dto.AiExplainResponse;
+import com.ja.games.games.bughunter.ai.service.AiExplanationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

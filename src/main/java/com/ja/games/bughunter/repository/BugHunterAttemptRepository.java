@@ -1,10 +1,10 @@
-package com.ja.games.bughunter.repository;
+package com.ja.games.games.bughunter.repository;
 
-import com.ja.games.bughunter.dto.BugCategoryAnalytics;
-import com.ja.games.bughunter.dto.BugHunterLeaderboardRow;
-import com.ja.games.bughunter.dto.BugHunterPublicLeaderboardRow;
-import com.ja.games.bughunter.dto.BugQuestionAccuracy;
-import com.ja.games.bughunter.entity.BugHunterAttempt;
+import com.ja.games.games.bughunter.dto.BugCategoryAnalytics;
+import com.ja.games.games.bughunter.dto.BugHunterLeaderboardRow;
+import com.ja.games.games.bughunter.dto.BugHunterPublicLeaderboardRow;
+import com.ja.games.games.bughunter.dto.BugQuestionAccuracy;
+import com.ja.games.games.bughunter.entity.BugHunterAttempt;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

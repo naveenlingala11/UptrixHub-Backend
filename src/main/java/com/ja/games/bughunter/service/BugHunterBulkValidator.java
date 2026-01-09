@@ -1,6 +1,6 @@
-package com.ja.games.bughunter.service;
+package com.ja.games.games.bughunter.service;
 
-import com.ja.games.bughunter.dto.BugHunterQuestionRequest;
+import com.ja.games.games.bughunter.dto.BugHunterQuestionRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.*;

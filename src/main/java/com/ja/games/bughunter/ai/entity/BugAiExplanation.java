@@ -1,4 +1,4 @@
-package com.ja.games.bughunter.ai.entity;
+package com.ja.games.games.bughunter.ai.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
