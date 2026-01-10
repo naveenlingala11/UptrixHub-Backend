@@ -1,7 +1,7 @@
 package com.ja.admin.controller;
 
+import com.ja.admin.service.AdminAnalyticsService;
 import com.ja.pseudo.dto.*;
-import com.ja.pseudo.service.AdminAnalyticsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;

@@ -1,7 +1,8 @@
-package com.ja.games.games.bughunter.ai.service;
+package com.ja.games.bughunter.ai.service;
 
-import com.ja.games.games.bughunter.ai.dto.AiExplainResponse;
-import com.ja.games.games.bughunter.ai.dto.LlmClient;
+
+import com.ja.games.bughunter.ai.dto.AiExplainResponse;
+import com.ja.games.bughunter.ai.dto.LlmClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

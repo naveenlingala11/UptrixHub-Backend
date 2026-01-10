@@ -1,6 +1,6 @@
-package com.ja.games.games.bughunter.repository;
+package com.ja.games.bughunter.repository;
 
-import com.ja.games.games.bughunter.entity.BugGameLevel;
+import com.ja.games.bughunter.entity.BugGameLevel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

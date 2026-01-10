@@ -1,12 +1,12 @@
-package com.ja.games.games.bughunter.service;
+package com.ja.games.bughunter.service;
 
-import com.ja.games.games.bughunter.dto.BugHunterAnswerRequest;
-import com.ja.games.games.bughunter.dto.BugHunterAnswerResponse;
-import com.ja.games.games.bughunter.dto.BugHunterHistoryResponse;
-import com.ja.games.games.bughunter.entity.BugHunterAttempt;
-import com.ja.games.games.bughunter.entity.BugHunterQuestion;
-import com.ja.games.games.bughunter.repository.BugHunterAttemptRepository;
-import com.ja.games.games.bughunter.repository.BugHunterQuestionRepository;
+import com.ja.games.bughunter.dto.BugHunterAnswerRequest;
+import com.ja.games.bughunter.dto.BugHunterAnswerResponse;
+import com.ja.games.bughunter.dto.BugHunterHistoryResponse;
+import com.ja.games.bughunter.entity.BugHunterAttempt;
+import com.ja.games.bughunter.entity.BugHunterQuestion;
+import com.ja.games.bughunter.repository.BugHunterAttemptRepository;
+import com.ja.games.bughunter.repository.BugHunterQuestionRepository;
 import com.ja.games.xp.service.XpEngineService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

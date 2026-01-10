@@ -1,7 +1,7 @@
-package com.ja.games.games.bughunter.repository;
+package com.ja.games.bughunter.repository;
 
-import com.ja.games.games.bughunter.dto.BugQuestionAnalytics;
-import com.ja.games.games.bughunter.entity.BugHunterQuestion;
+import com.ja.games.bughunter.dto.BugQuestionAnalytics;
+import com.ja.games.bughunter.entity.BugHunterQuestion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

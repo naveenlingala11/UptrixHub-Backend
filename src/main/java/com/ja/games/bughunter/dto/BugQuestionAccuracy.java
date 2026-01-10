@@ -1,4 +1,4 @@
-package com.ja.games.games.bughunter.dto;
+package com.ja.games.bughunter.dto;
 
 public record BugQuestionAccuracy(
         Long questionId,

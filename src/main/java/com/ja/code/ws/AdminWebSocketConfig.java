@@ -1,9 +1,9 @@
 package com.ja.code.ws;
 
-import com.ja.websocket.AdminWebSocketHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.*;
+import com.ja.websocket.AdminWebSocketHandler;
 
 @Configuration
 @EnableWebSocket

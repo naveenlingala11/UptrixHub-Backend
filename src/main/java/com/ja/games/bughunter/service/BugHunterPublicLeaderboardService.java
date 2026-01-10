@@ -1,7 +1,7 @@
-package com.ja.games.games.bughunter.service;
+package com.ja.games.bughunter.service;
 
-import com.ja.games.games.bughunter.dto.BugHunterPublicLeaderboardRow;
-import com.ja.games.games.bughunter.repository.BugHunterAttemptRepository;
+import com.ja.games.bughunter.dto.BugHunterPublicLeaderboardRow;
+import com.ja.games.bughunter.repository.BugHunterAttemptRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;

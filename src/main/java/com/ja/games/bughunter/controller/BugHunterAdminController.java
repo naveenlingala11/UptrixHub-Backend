@@ -1,14 +1,15 @@
-package com.ja.games.games.bughunter.controller;
+package com.ja.games.bughunter.controller;
 
-import com.ja.games.games.bughunter.dto.BugCategoryAnalytics;
-import com.ja.games.games.bughunter.dto.BugHunterQuestionRequest;
-import com.ja.games.games.bughunter.dto.BugQuestionAccuracy;
-import com.ja.games.games.bughunter.dto.BugQuestionAnalytics;
-import com.ja.games.games.bughunter.entity.BugHunterQuestion;
-import com.ja.games.games.bughunter.repository.BugHunterAttemptRepository;
-import com.ja.games.games.bughunter.repository.BugHunterQuestionRepository;
-import com.ja.games.games.bughunter.service.BugHunterAdminService;
-import com.ja.games.games.bughunter.service.BugHunterBulkValidator;
+
+import com.ja.games.bughunter.dto.BugCategoryAnalytics;
+import com.ja.games.bughunter.dto.BugHunterQuestionRequest;
+import com.ja.games.bughunter.dto.BugQuestionAccuracy;
+import com.ja.games.bughunter.dto.BugQuestionAnalytics;
+import com.ja.games.bughunter.entity.BugHunterQuestion;
+import com.ja.games.bughunter.repository.BugHunterAttemptRepository;
+import com.ja.games.bughunter.repository.BugHunterQuestionRepository;
+import com.ja.games.bughunter.service.BugHunterAdminService;
+import com.ja.games.bughunter.service.BugHunterBulkValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;

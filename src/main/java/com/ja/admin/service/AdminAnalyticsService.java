@@ -1,6 +1,7 @@
-package com.ja.pseudo.service;
+package com.ja.admin.service;
 
-import com.ja.admin.dto.ChallengeAnalyticsResponse;
+
+import com.ja.challenge.dto.ChallengeAnalyticsResponse;
 import com.ja.challenge.entity.UserChallengeProgress;
 import com.ja.challenge.repository.UserChallengeProgressRepository;
 import com.ja.pseudo.dto.DifficultyAnalyticsResponse;
